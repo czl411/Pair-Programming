@@ -58,4 +58,3 @@ class Player(Card):                                                             
         self.sum = len(self.card)
 
 
-
