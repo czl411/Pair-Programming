@@ -121,4 +121,3 @@ if res_end["data"]["winner"] == self_id:
     print("YOU WIN!")
 else:
     print("YOU LOSE!")
-
