@@ -15,22 +15,28 @@ class Card_zu(Card):            #卡组类
     def Updata_Card_zu(self,card):                                                               #更新卡组
         if card in self.card:
             self.card.pop(self.card.index(card))
-            self.sum=self.sum-1
+            self.sum = self.sum-1
 
 class Placement_Area(Card):                                                                     #放置区类
-    def Put_in(self,card):                                                                      #放入卡牌
+
+    def Update(self,card):                                                                      #放入卡牌
+        if card not in self.card:
+            self.card.append(card)
+            self.sum = self.sum+1
+
+    def Put_in(self,card):
         self.card.append(card)
-        self.sum=len(self.card)
+        self.sum = self.sum + 1
 
     def  Whether_Eat_Cards(self):                                                               #判断是否吃牌
         if self.sum>=2:
-            return self.card[sum-1]==self.card[sum-2]
+            return self.card[self.sum-1][0]==self.card[self.sum-2][0]
         else:
             return False
 
     def Empty_Card(self):                                                                       #放置区清零
         self.card.clear()
-        self.sum=len(self.card)
+        self.sum=0
 
 class Player(Card):                                                                             #玩家类
     def __init__(self,name):
@@ -38,8 +44,8 @@ class Player(Card):                                                             
         self.name=name
 
     def Update_Player_Card(self,Card):
-        if card in self.card:
-            self.card.pop(self.card.index(card))
+        if Card in self.card:
+            self.card.pop(self.card.index(Card))
             self.sum=self.sum-1
 
     def Knockout(self):         #打出手牌
@@ -56,5 +62,6 @@ class Player(Card):                                                             
             self.card.append(card)
         Place_Area.Empty_Card()
         self.sum = len(self.card)
+
 
 
